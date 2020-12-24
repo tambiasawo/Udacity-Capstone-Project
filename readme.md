@@ -1,7 +1,7 @@
 # Udacity Frontend Capstone Project - Travel App
 
 ## Introduction
-This project uses data from three different APIs namely:
+This app uses data from three different APIs namely:
 - Geonames 
 - WeatherBit
 - Pixabay
