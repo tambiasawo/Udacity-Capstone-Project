@@ -5,6 +5,7 @@ This project uses data from three different APIs namely:
 - Geonames 
 - WeatherBit
 - Pixabay
+
 to display information about a user's trip.
 
 ## Description
