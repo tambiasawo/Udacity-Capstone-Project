@@ -1,5 +1,3 @@
-//require('dotenv').config()
-
 const fetch = require('node-fetch')
 const doc = document
 
@@ -25,13 +23,13 @@ export async function getInfo(e) {
         const today = new Date()
         let t1 = today.getTime()
         let t2 = d1.getTime()
-        if(t2-1<t1)
+        let t1_nextWeek = t1+(7*24*60*60*1000)
+        let diff_days = Math.floor((t2-t1)/(24*60*60*1000)) + 1;
+        if(diff_days<0)
         {
             alert("Please enter a valid date")
             return false;
         }
-        let t1_nextWeek = t1+(7*24*60*60*1000)
-        let diff_days = Math.floor((t2-t1)/(24*60*60*1000)) + 1;
         const geonameURL = `http://api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${user}`
         const request = await fetch(geonameURL)
         try{
@@ -50,6 +48,8 @@ export async function getInfo(e) {
         {
             console.log('Request Unsuccessful');
         }
+        loc.value = ""
+        date.value = ""
     }
 
     else {
@@ -90,7 +90,7 @@ async function getWeatherData(result, diff_days, loc, dateVal) {
     const hum = data.rh
     const descr = data.weather.description
     const icon = data.weather.icon
-    const country =data.country_code
+    const country = result.data.length>1 ? result.country_code : data.country_code
     const feelsLike = data.app_max_temp ? (data.app_max_temp + data.app_min_temp)/2 : data.app_temp
     const iconUrl = `https://www.weatherbit.io/static/img/icons/${icon}.png`
     const wind = data.wind_spd;
@@ -136,12 +136,12 @@ function updateUI(retrievedData) {
                     <div class="weatherContainer">
                         <div id="weatherDescriptionHeader">${item.descr}</div>
                         <div id="weatherMain">
-                            <div id="temperature"><h2>${item.temp} &#8451;</h2></div>
+                            <div id="temperature"><h2>${Math.floor(item.temp)} &#8451;</h2></div>
                             <div id="documentIconImg"><img src="${item.iconUrl}"></div>
                             <div class="bottomDetails"> 
-                                <div id="feel">Feels like ${item.feelsLike} &#8451;</div>
-                                <div id="windSpeed" class="bottom-details">Wind Speed: ${item.wind} m/s</div>
-                                <div id="humidity" class="bottom-details">Humidity: ${item.hum}</div>
+                                <div id="feel">Feels like ${Math.floor(item.feelsLike)} &#8451;</div>
+                                <div id="windSpeed" class="bottom-details">Wind Speed: ${Math.floor(item.wind)} m/s</div>
+                                <div id="humidity" class="bottom-details">Humidity: ${Math.floor(item.hum)}</div>
                             </div>
                         </div>
                     </div>
