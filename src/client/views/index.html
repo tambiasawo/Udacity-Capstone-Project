@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+</head>
+<body>
+    <div class ="container"> 
+        <form class = "inputForm" onsubmit="return Client.getInfo(event)">
+            <div>
+                <input type="text" name="location" id="loc" placeholder="Enter your destination" required />
+            </div>
+            <div>
+                <input type="date" name="date" id="date" placeholder="Enter your departure date" required /> 
+            </div>
+            <div>
+                <input type="submit" value="Submit" onclick="return Client.getInfo(event)" onsubmit = "return Client.getInfo(event)">
+            </div>
+        </form>
+        <ul class ="destinations" onclick="return Client.handleClick(event)">
+                   
+        </ul>
+        
+    </div>
+</body>
+</html>

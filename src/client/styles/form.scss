@@ -1,0 +1,176 @@
+$div_back_color:#f6dfc5;
+$li_back_color: #fbfbfb;
+
+.inputForm{
+    width:30%;
+    margin: 3% auto;
+    padding: 3% 2% 2% 1%;
+    text-align: center;
+    background-color: #fbfbfb;
+    border-radius: 5px;
+    filter: brightness(1);
+    border: 1px solid gray;
+    box-shadow: 1px 1px gray;
+}
+
+#loc,input[type=date]{
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 8px;
+    margin: 5px auto;
+    box-sizing: border-box;
+}
+
+input[type=submit]{
+    padding: 8px 20px;
+    font-size: 20px;
+    margin: 15px 0 5px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-left: 0;
+    background-color: #e3962f;
+    cursor: pointer;
+}
+
+.destinations{
+    margin:0 3%;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    height: 500px;
+    li
+    {
+        background-color: #fbfbfb;
+        width: 20%;  
+        margin: 2%;
+        border-radius: 3%;
+        border: 1px solid #ccc;  
+        flex: unset 0 21%;
+    }
+  
+    .dest1{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h2, h4{
+            text-align: center;
+        }
+        img{
+            width:80%
+        }
+    }
+    .weatherContainer{
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.808);
+        height: 180px; 
+        width: 80%;
+        margin: 5% auto;
+        background-color: $div_back_color;
+        
+        #weatherMain{
+            margin: 0 auto;
+            padding: 0 auto;
+            height: 100px;
+        }
+        #weatherDescriptionHeader{
+            text-align: center;
+            padding-bottom: 0%;
+            padding-top: 3%;
+            font-weight: 500;
+        }
+        #temperature>h2, #feel{
+            text-align: center;
+        }
+        #temperature>{
+           width: 1px;
+           margin-bottom: 0;
+        }
+        #documentIconImg>img{
+            height: 50px;
+            width: 20%;
+            display: block;
+            margin-top: -20px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom:10px
+        }
+        .bottomDetails{
+            text-align: center;
+            padding-top: 0%;
+            margin-top: -10px;
+        }
+    }
+}
+.tripps
+{  
+    position: relative;
+    button{
+        background-color: #e3962f;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: black;
+        padding: 8px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        font-size: 16px;
+        margin: 4px auto;
+        cursor: pointer;
+    }
+    #notes{
+        width: 80%;
+        margin: 5px 5%;
+        padding: 10px;
+        resize: none;
+    }
+    .display{
+        text-align: center;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.808);
+        background-color: $div_back_color;
+        padding: 10px 10px;
+     
+        p{
+            background-color: $div_back_color;
+            border: none;
+            padding: 4px 10px;
+        }
+    }
+}
+
+
+@media only screen and (min-width:900px) and (max-width: 1350px )
+{
+    .destinations{
+        li
+        {
+            width: 30%;          
+        }
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    .inputForm{
+        width:80%;
+        margin: 3% auto;
+        padding: 3% auto 1%;
+    }
+    .destinations{
+        li
+        {
+            width: 40%;
+        }
+    }
+}
+
+@media only screen and (max-width: 550px){
+    .destinations{
+        li
+        {
+            width: 60%;
+        }
+    }
+}
