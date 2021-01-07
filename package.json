@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build-dev": "webpack serve --config webpack.dev.js --open http://localhost:3000",
+    "build-dev": "webpack serve --config webpack.dev.js --open http://localhost:8000",
     "build-prod": "webpack --config webpack.prod.js",
     "start": "node src/server/server.js"
   },
