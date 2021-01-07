@@ -12,7 +12,7 @@ to display information about a user's trip.
 The first API, Geonames, fetches the latitude and longitude coordinates of a user entered location and sends the, to the second API, weatherBit. This API fetches the weather for that location using the date entered by the user and calls the third API to get an image for the user entered location. The app then displays these information unto the user in a user-friendly method.
 
 ## Requirements
-To use this app, you will have to get a key for each of the specified APIs listed above. After you get your keys, create a *.env* file in the project root folder and inser the fllowing line below
+To use this app, you will have to get a key for each of the specified APIs listed above. You can either get yours or use mine
 ```
 user = your geonames api key
 pixAPI = your Pixabay API key
