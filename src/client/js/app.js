@@ -1,20 +1,27 @@
 const fetch = require('node-fetch')
 const doc = document
 
+//environment variables
 const user = process.env.user;
 const weatherBitAPI = process.env.weatherBitAPI;
 const pixAPI = process.env.pixAPI;
 
-console.log(user, pixAPI)
-
+//selectors
 const ul = doc.querySelector('.destinations')
 const loc = doc.getElementById('loc')
 const date = doc.getElementById('date')
-
+const formSub = doc.querySelector('form')
 let weatherURL;
 let items =  []
 
-export async function getInfo(e) {
+/**
+ * Gets the user request parameter to begin processing via the submit event listener
+ * @param {submit event }
+ * return null  
+ * throws a response of 'Unsuccessful request' if API call fails*/
+
+formSub.addEventListener('submit', async function(e) {
+
     e.preventDefault()
     const location = loc.value.substring(0,1).toUpperCase()+loc.value.substring(1,loc.value.length).toLowerCase();
     const dateValue = date.value;
@@ -39,7 +46,7 @@ export async function getInfo(e) {
             const lat = response.geonames[0].lat
             const curr = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${long}&key=${weatherBitAPI}`
             const forecast = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${long}&days=${diff_days}&key=${weatherBitAPI}`
-    
+
             weatherURL = t2 > t1_nextWeek ? forecast : curr
             getWeatherResponse(weatherURL).then(function (results) {
                 getWeatherData(results, diff_days, location, dateValue)
@@ -57,7 +64,12 @@ export async function getInfo(e) {
         alert("Please make sure all input fields are filled")
         return false;
     }
-}
+})
+/**
+ * Gets the user location parameter to make API call to get image
+ * @param location entered by user 
+ * return a default image is location does not exist, else returns image for entered location   
+ * throws a response of 'Unsuccessful requests if API call fails*/ 
 export async function getLocationImage(location) { 
     const url = `https://pixabay.com/api/?key=${pixAPI}&q=${location}&per_page=3&image_type=photo`
     const request = await fetch(url)
@@ -72,6 +84,12 @@ export async function getLocationImage(location) {
     }
 }
 
+/**
+ * Makes API call to get weather data
+ * @param url for api call 
+ * return api response   
+ * throws a response of 'Request Unsuccessful' if API call fails*/ 
+
 export async function getWeatherResponse(url) {
     const request = await fetch(url);
     try
@@ -84,6 +102,12 @@ export async function getWeatherResponse(url) {
         console.log('Request Unsuccessful');
     }
 }
+
+/**
+ * Calls method to Sends response data to local server and calls method to retrieve response data
+ * @param response data 
+ * return null   
+ * throws null*/ 
 
 async function getWeatherData(result, diff_days, loc, dateVal) {
     const data = result.data.length>1 ? result.data[diff_days-1] : result.data[0]
@@ -100,6 +124,11 @@ async function getWeatherData(result, diff_days, loc, dateVal) {
     getDataFromServer()
 }
 
+/**
+ * sends response data to server via POST 
+ * @param {data to send and server url} 
+ * return respond from fetch   
+*/
 export async function postMethod(url, data) {
     return await fetch(url, {
         method: 'POST',
@@ -114,6 +143,10 @@ async function getDataFromServer() {
     let retrievedData = await response.json();
     updateUI(retrievedData)   
 }
+/**
+ * Displays data unto UI
+ * @param {*} retrievedData 
+ */
 
 function updateUI(retrievedData) {
     items.push(retrievedData)
@@ -156,7 +189,10 @@ function updateUI(retrievedData) {
     }).join('');
 }
 
-
+/**
+ * handles user click events (save, delete or add notes)
+ * @param {click event} e 
+ */
 export function handleClick(e) {
     if(e.target.localName=="button"){
         const elem = e.target
@@ -187,7 +223,11 @@ export function handleClick(e) {
         }
     }
 }
-
+/**
+ * function to handle user save click event
+ * @param {*} targ  target from clcik event
+ * @param {*} ikey local storage key
+ */
 function saveList(targ,ikey){
     const display = doc.createElement('div')
     const index = targ.dataset.index 
@@ -228,7 +268,10 @@ function saveList(targ,ikey){
     localStorage.setItem(`${ikey}`, JSON.stringify(items[index]))
     targ.innerText = "Delete Trip"
 }
-    
+    /**
+ * function to handle user delete click event
+ * @param {*} t HTML list to be deleted from UI
+ */
 function deleteList(t) {
     let delIndex; let toDel
     let lockeys = Object.keys(localStorage) 
@@ -250,8 +293,10 @@ function deleteList(t) {
     t.parentElement.parentElement.parentElement.remove()   
    
 }
+/**
+ * Display localStorage items upon reload
+ */
 
-//display localStorage items upon reload
 const store = { ...localStorage };
 
 if(Object.getOwnPropertyNames(store).length>0){
