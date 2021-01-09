@@ -24,6 +24,7 @@ $li_back_color: #fbfbfb;
 }
 
 input[type=submit]{
+    
     padding: 8px 20px;
     font-size: 20px;
     margin: 15px 0 5px 0;
@@ -32,6 +33,10 @@ input[type=submit]{
     margin-left: 0;
     background-color: #e3962f;
     cursor: pointer;
+    
+    &:hover{
+        border: 1px solid #776d4c;
+    }
 }
 
 .destinations{
@@ -70,7 +75,11 @@ input[type=submit]{
         width: 80%;
         margin: 5% auto;
         background-color: $div_back_color;
-        
+        opacity: .8;
+        &:hover{
+            opacity: 1;
+            transition: .2s ease;
+        }
         #weatherMain{
             margin: 0 auto;
             padding: 0 auto;
@@ -120,6 +129,9 @@ input[type=submit]{
         font-size: 16px;
         margin: 4px auto;
         cursor: pointer;
+    }
+    button:hover{
+        transform: scale(1.1)
     }
     #notes{
         width: 80%;

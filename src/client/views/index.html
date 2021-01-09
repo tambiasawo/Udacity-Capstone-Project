@@ -19,9 +19,39 @@
             </div>
         </form>
         <ul class ="destinations" onclick="return Client.handleClick(event)">
-                   
+            <!-- <li data-index = ${i}>
+                <div class="dest1">
+                    <h2>${item.loc}, ${item.country}</h2>
+                    <img src="${item.locImage}" alt="se" width="200px" height="150px">
+                    <h4>${item.diff_days} Days left. <br>Departing on: ${item.dateVal} </h4>
+                    <div class="weatherContainer">
+                        <div id="weatherDescriptionHeader">${item.descr}</div>
+                        <div id="weatherMain">
+                            <div id="temperature"><h2>${Math.floor(item.temp)} &#8451;</h2></div>
+                            <div id="documentIconImg"><img src="${item.iconUrl}"></div>
+                            <div class="bottomDetails"> 
+                                <div id="feel">Feels like ${Math.floor(item.feelsLike)} &#8451;</div>
+                                <div id="windSpeed" class="bottom-details">Wind Speed: ${Math.floor(item.wind)} m/s</div>
+                                <div id="humidity" class="bottom-details">Humidity: ${Math.floor(item.hum)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "tripps">
+                        ${notesDisplay}
+                        <button id = ${i} data-pack = ${i} class = "but">Add Packing List </button>
+                        <button id = "save" data-index = ${i} job = "save">Save Trip</button>
+                    </div>
+                </div>   
+            </li> -->
         </ul>
         
     </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
 </body>
 </html>

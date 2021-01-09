@@ -5,6 +5,7 @@ const user = process.env.user;
 const weatherBitAPI = process.env.weatherBitAPI;
 const pixAPI = process.env.pixAPI;
 
+console.log(user, pixAPI)
 
 const ul = doc.querySelector('.destinations')
 const loc = doc.getElementById('loc')
