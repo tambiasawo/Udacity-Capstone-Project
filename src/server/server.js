@@ -11,7 +11,7 @@ app.use(express.static('dist'))
 
 result ={}
 
-const port = 8000
+const port = 8000 || process.env.PORT
 
 app.get('/', function (req, res){
     res.sendFile('/dist/index.html')
