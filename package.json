@@ -18,7 +18,7 @@
     "frontend",
     "developer"
   ],
-  "type":"module",
+  
   "author": "Tambi A",
   "license": "ISC",
   "devDependencies": {
