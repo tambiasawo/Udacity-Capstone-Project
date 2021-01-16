@@ -2,19 +2,19 @@
 
 ## Introduction
 This app uses data from three different APIs namely:
-- Geonames 
+- Mapbox 
 - WeatherBit
 - Pixabay
 
 to display information about a user's trip.
 
 ## Description
-The first API, Geonames, fetches the latitude and longitude coordinates of a user entered location and sends the, to the second API, weatherBit. This API fetches the weather for that location using the date entered by the user and calls the third API to get an image for the user entered location. The app then displays these information unto the user in a user-friendly method.
+The first API, Mapbox, fetches the latitude and longitude coordinates of a user entered location and sends the, to the second API, weatherBit. This API fetches the weather for that location using the date entered by the user and calls the third API to get an image for the user entered location. The app then displays these information unto the user in a user-friendly method. The user can also enter a packing list for the trip
 
 ## Requirements
 To use this app, you will have to get a key for each of the specified APIs listed above. You can either get yours or use mine
 ```
-user = your geonames api key
+mapAPI = your Mapbox api key
 pixAPI = your Pixabay API key
 weatherBitAPI = you weatherBitAPI key
 ```
