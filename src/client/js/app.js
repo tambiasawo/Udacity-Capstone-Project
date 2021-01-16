@@ -51,11 +51,10 @@ formSub.addEventListener('submit', async function(e) {
         }
         const geonameURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?access_token=${mapAPI}`
 
-        //`//api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${user}`
         const request = await fetch(geonameURL)
         try{
             const response = await request.json() 
-            console.log(response)
+            
             const long = response.features[0].center[0]
             const lat = response.features[0].center[1]
         
