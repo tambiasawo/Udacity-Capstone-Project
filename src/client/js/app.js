@@ -2,16 +2,16 @@ const fetch = require('node-fetch')
 const doc = document
 
 //environment variables
-const user = process.env.user;
 const weatherBitAPI = process.env.weatherBitAPI;
 const pixAPI = process.env.pixAPI;
-
+const mapAPI = process.env.mapAPI;
 //selectors
 const ul = doc.querySelector('.destinations')
 const loc = doc.getElementById('loc')
 const date = doc.getElementById('date')
 const formSub = doc.querySelector('form')
 let weatherURL;
+let location
 let items =  []
 
 /**
@@ -23,8 +23,19 @@ let items =  []
 formSub.addEventListener('submit', async function(e) {
 
     e.preventDefault()
-    const location = loc.value.substring(0,1).toUpperCase()+loc.value.substring(1,loc.value.length).toLowerCase();
+    let locArray = loc.value.split(" ")
+    if(locArray.length > 1)
+    {
+        location = locArray[0].substring(0,1).toUpperCase()+locArray[0].substring(1,locArray[0].length).toLowerCase() + " "+
+        locArray[1].substring(0,1).toUpperCase()+locArray[1].substring(1,locArray[1].length).toLowerCase();
+        
+        if(locArray[1].length==2)
+            locArray[1].toUpperCase()  
+    }
+    else
+        location = loc.value.substring(0,1).toUpperCase()+loc.value.substring(1,loc.value.length).toLowerCase();
     const dateValue = date.value;
+    
     if(location && dateValue)
     {
         const d1 = new Date(dateValue+'T00:00:00')
@@ -38,12 +49,16 @@ formSub.addEventListener('submit', async function(e) {
             alert("Please enter a valid date")
             return false;
         }
-        const geonameURL = `//api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${user}`
+        const geonameURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?access_token=${mapAPI}`
+
+        //`//api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${user}`
         const request = await fetch(geonameURL)
         try{
             const response = await request.json() 
-            const long = response.geonames[0].lng
-            const lat = response.geonames[0].lat
+            console.log(response)
+            const long = response.features[0].center[0]
+            const lat = response.features[0].center[1]
+        
             const curr = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${long}&key=${weatherBitAPI}`
             const forecast = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${long}&days=${diff_days}&key=${weatherBitAPI}`
 
