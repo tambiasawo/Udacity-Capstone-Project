@@ -38,7 +38,7 @@ formSub.addEventListener('submit', async function(e) {
             alert("Please enter a valid date")
             return false;
         }
-        const geonameURL = `http://api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${user}`
+        const geonameURL = `//api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${user}`
         const request = await fetch(geonameURL)
         try{
             const response = await request.json() 
