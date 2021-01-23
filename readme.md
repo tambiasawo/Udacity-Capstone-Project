@@ -27,3 +27,5 @@ npm run build-prod
 npm run start
 ```
 And you should be able to plan your next trip!!!
+
+To see the live version of the code - https://travel-app-final-version.herokuapp.com/
