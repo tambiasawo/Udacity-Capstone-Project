@@ -10,6 +10,9 @@ const ul = doc.querySelector('.destinations')
 const loc = doc.getElementById('loc')
 const date = doc.getElementById('date')
 const formSub = doc.querySelector('form')
+const loading = doc.querySelector('.loading');
+
+loading.style.display = 'none';
 let weatherURL;
 let location
 let items =  []
@@ -38,6 +41,12 @@ formSub.addEventListener('submit', async function(e) {
     
     if(location && dateValue)
     {
+        setTimeout(function()
+        {
+            ul.innerHTML = loading.innerHTML;
+            loading.style.display = 'block';
+            
+        },100)
         const d1 = new Date(dateValue+'T00:00:00')
         const today = new Date()
         let t1 = today.getTime()
@@ -124,8 +133,12 @@ export async function getWeatherResponse(url) {
  * throws null*/ 
 
 async function getWeatherData(result, diff_days, loc, dateVal) {
-    const data = result.data.length>1 ? result.data[diff_days-1] : result.data[0]
-    const temp = data.temp;
+    console.log(result)
+    console.log(diff_days)
+    const data = result.data.length>1 ? result.data[result.data.length-1] : result.data[0]
+    console.log(result.data.length-1)
+    console.log(data);
+    const temp = data.temp;  console.log("temp: "+temp)
     const hum = data.rh
     const descr = data.weather.description
     const icon = data.weather.icon
@@ -176,6 +189,7 @@ function updateUI(retrievedData) {
 
         const notesDisplay = (item.info) ? localInfo : ""
         return `
+
             <li data-index = ${i}>
                 <div class="dest1">
                     <h2>${item.loc}, ${item.country}</h2>

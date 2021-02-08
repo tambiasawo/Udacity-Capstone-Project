@@ -7,9 +7,9 @@
 </head>
 <body>
     <div class ="container"> 
-        <span class="logo" onClick="window.location.reload();">
+        <div class="logo" onClick="window.location.reload();">
             Travel Planner
-        </span>
+        </div>
         <form class = "inputForm">
             <div>
                 <input type="text" name="location" id="loc" placeholder="Enter your destination" required />
@@ -21,10 +21,15 @@
                 <input type="submit" id = "sub" value="Submit">
             </div>
         </form>
-        <ul class ="destinations" onclick="return Client.handleClick(event)">
-            
-        </ul>
         
+        <ul class ="destinations" onclick="return Client.handleClick(event)">
+           
+            <span class='loading'>
+                <img src="https://i.postimg.cc/50sQXWFq/spinner-1.gif" alt = "loaduing" width = "300px" height = "300px" style="margin: 0 40%;" 
+                     sizes="(max-width: 600px) 100px"
+                />
+            </span>
+        </ul>
     </div>
     <script>
         if ('serviceWorker' in navigator) {

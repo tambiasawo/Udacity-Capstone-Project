@@ -25,4 +25,30 @@ body, html{
         cursor: pointer;
     }
 
+    @media only screen and (max-width: 650px){
+    .logo{
+        font-weight: 300;  
+        padding:  2%;
+        font-size: 2em;
+        border: 2px black solid;
+        border-radius: 50%;
+        left: 40%; 
+        top: 2%;
+        background-color: #e3962f;
+        cursor: pointer;
+    }
 
+    @media only screen and (max-width: 1000px){
+        .logo{
+            font-weight: 200;  
+            padding:  2%;
+            font-size: 1em;
+            border: 2px black solid;
+            border-radius: 50%;
+            left: 40%; 
+            top: 2%;
+            background-color: #e3962f;
+            cursor: pointer;
+        }
+    }
+}
