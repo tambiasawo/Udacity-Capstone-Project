@@ -60,6 +60,8 @@ input[type=submit]{
         border-radius: 3%;
         border: 1px solid #ccc;  
         flex: unset 0 21%;
+        //margin: 1% auto
+
     }
     
     .dest1{
@@ -197,6 +199,13 @@ input[type=submit]{
         li
         {
             width: 40%;
+            padding: 2% auto 1%;
+            //margin: 1% auto
+
+        }
+        .loading>img{
+            margin: 10% 40%;
+            height: 30%;
         }
     }
 }
@@ -212,6 +221,12 @@ input[type=submit]{
         li
         {
             width: 60%;
+            padding: 2% auto 1%;
+            margin: 1% auto
+        }
+        .loading>img{
+            margin: 10% 40%;
+            height: 20%;
         }
     }
 }

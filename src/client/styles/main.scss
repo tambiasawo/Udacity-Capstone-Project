@@ -26,16 +26,22 @@ body, html{
     }
 
     @media only screen and (max-width: 650px){
-    .logo{
-        font-weight: 300;  
-        padding:  2%;
-        font-size: 2em;
-        border: 2px black solid;
-        border-radius: 50%;
-        left: 40%; 
-        top: 2%;
-        background-color: #e3962f;
-        cursor: pointer;
+        .container{
+            background-repeat:no-repeat;
+            background-size:auto 100%;
+            background-position: center center;
+            height: 100%; // height of enclosing div
+            .logo{
+            font-weight: 300;  
+            padding:  2%;
+            font-size: 2em;
+            border: 2px black solid;
+            border-radius: 50%;
+            left: 30%; 
+            top: 2%;
+            background-color: #e3962f;
+            cursor: pointer;
+        }
     }
 
     @media only screen and (max-width: 1000px){
